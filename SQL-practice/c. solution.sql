@@ -62,10 +62,10 @@ FROM tasks t
 JOIN month m
 ON t.task_id = m.task_id
 
--- Find average task completion duration by priority. Hint: Use: completed_at - created_at
+--   Find average task completion duration by priority. Hint: Use: completed_at - created_at
 
 WITH duration AS (
-    SELECT completed_at::DATE - created_at::DATE dur, task_id
+    SELECT task_id, completed_at::DATE - created_at::DATE dur
 	FROM tasks
 )
 
@@ -75,3 +75,4 @@ FROM tasks t
 JOIN duration d
 ON t.task_id = d.task_id
 ORDER BY avg_completion_duration DESC
+	
