@@ -1,7 +1,7 @@
 -- Insert Data
 
 -- Departments
-INSERT INTO departments (depart_name)
+INSERT INTO departments (department_name)
 VALUES
     ('Operations'),
 	('Finance'),
@@ -23,12 +23,12 @@ VALUES
 	('Charlie', 2, '2020-07-01', 70000, 'Active'),
 	('Diana', 3, '2023-02-20', 50000, 'Active'),
 	('Evan', 3, '2022-09-05', 58000, 'Inactive'),
-	('Fiona', 4, '2011-11-11', 52000, 'Active')
+	('Fiona', 4, '2011-11-11', 52000, 'Active');
 
 
 -- Tasks
 INSERT INTO tasks (
-    employee_id,
+    employee_id, 
 	task_name,
 	task_status,
 	priority,
