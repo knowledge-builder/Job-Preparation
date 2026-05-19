@@ -40,3 +40,10 @@ SELECT DISTINCT department_id,
     ROUND(SUM(salary) OVER(PARTITION BY department_id), 2) total_salary_expense
 FROM employees
 ORDER BY total_salary_expense DESC
+
+-- Count employees by status.
+
+SELECT DISTINCT status, 
+    COUNT(employee_id) OVER(PARTITION BY status) employee_count
+FROM employees
+ORDER BY employee_count DESC
