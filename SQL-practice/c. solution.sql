@@ -25,3 +25,11 @@ SELECT DISTINCT priority,
     COUNT(task_id) OVER(PARTITION BY priority) task_count
 FROM tasks
 ORDER BY task_count DESC
+
+-- Count completed tasks per employee.
+
+SELECT DISTINCT employee_id, 
+    COUNT(task_id) OVER(PARTITION BY employee_id) task_count
+FROM tasks
+WHERE task_status = 'Completed'
+ORDER BY task_count DESC
