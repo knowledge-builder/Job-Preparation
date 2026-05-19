@@ -48,7 +48,7 @@ SELECT DISTINCT status,
 FROM employees
 ORDER BY employee_count DESC
 
---  Count tasks created per month.
+-- Count tasks created per month.
 
 WITH month AS (
     SELECT TO_CHAR(created_at::timestamp,'FMMonth') AS mnth, task_id
@@ -61,3 +61,17 @@ SELECT DISTINCT m.mnth,
 FROM tasks t
 JOIN month m
 ON t.task_id = m.task_id
+
+-- Find average task completion duration by priority. Hint: Use: completed_at - created_at
+
+WITH duration AS (
+    SELECT completed_at::DATE - created_at::DATE dur, task_id
+	FROM tasks
+)
+
+SELECT DISTINCT t.priority, 
+    ROUND(AVG(d.dur) OVER(PARTITION BY t.priority), 2) avg_completion_duration
+FROM tasks t
+JOIN duration d
+ON t.task_id = d.task_id
+ORDER BY avg_completion_duration DESC
