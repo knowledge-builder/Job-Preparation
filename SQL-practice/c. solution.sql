@@ -47,3 +47,17 @@ SELECT DISTINCT status,
     COUNT(employee_id) OVER(PARTITION BY status) employee_count
 FROM employees
 ORDER BY employee_count DESC
+
+--  Count tasks created per month.
+
+WITH month AS (
+    SELECT TO_CHAR(created_at::timestamp,'FMMonth') AS mnth, task_id
+	FROM tasks
+	ORDER BY mnth
+)
+
+SELECT DISTINCT m.mnth, 
+    COUNT(t.task_id) OVER(PARTITION BY m.mnth) task_count
+FROM tasks t
+JOIN month m
+ON t.task_id = m.task_id
