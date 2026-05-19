@@ -1,7 +1,7 @@
 -- Insert Data
 
 -- Departments
-INSERT INTO deparments (depart_name)
+INSERT INTO departments (depart_name)
 VALUES
     ('Operations'),
 	('Finance'),
