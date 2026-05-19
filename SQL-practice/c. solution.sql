@@ -18,3 +18,10 @@ SELECT DISTINCT task_status,
     COUNT(task_id) OVER(PARTITION BY task_status) task_count
 FROM tasks
 ORDER BY task_status ASC
+
+-- Count tasks by priority.
+
+SELECT DISTINCT priority, 
+    COUNT(task_id) OVER(PARTITION BY priority) task_count
+FROM tasks
+ORDER BY task_count DESC
