@@ -33,3 +33,10 @@ SELECT DISTINCT employee_id,
 FROM tasks
 WHERE task_status = 'Completed'
 ORDER BY task_count DESC
+
+-- Find total salary expense per department.
+
+SELECT DISTINCT department_id, 
+    ROUND(SUM(salary) OVER(PARTITION BY department_id), 2) total_salary_expense
+FROM employees
+ORDER BY total_salary_expense DESC
