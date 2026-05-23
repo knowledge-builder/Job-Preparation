@@ -123,7 +123,17 @@ SELECT
 FROM
     tasks
 
+-- Count active employees per department.
 
+SELECT
+    DISTINCT department_id department,
+    COUNT(*) FILTER(WHERE status = 'Active') employee_count
+FROM
+    employees
+GROUP BY
+    department_id
+ORDER BY
+    employee_count DESC
 
 
 
