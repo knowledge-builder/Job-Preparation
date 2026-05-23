@@ -211,7 +211,44 @@ JOIN
 	employees e
 ON t.employee_id = e.employee_id
 
+-- Show completed tasks with:
+	-- employee name
+	-- department name
 
+SELECT
+    e.employee_name, t.task_status, t.task_name, e.department_id
+FROM
+    employees e
+JOIN
+    tasks t
+ON  
+    e.employee_Id = t.employee_id
+WHERE
+    t.task_status = 'Completed'
+
+-- Count tasks per department.
+
+SELECT
+    e.department_id, COUNT(t.task_id) task_count
+FROM
+    employees e
+JOIN
+    tasks t
+ON  
+    e.employee_id = t.employee_id
+GROUP BY
+    e.department_id
+ORDER BY task_count DESC
+
+-- Find average salary by department name.
+
+SELECT
+    department_id, ROUND(AVG(salary), 2) avg_salary_dept
+FROM
+    employees
+GROUP BY 
+    department_id
+	
 
 
 
