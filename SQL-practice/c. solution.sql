@@ -194,6 +194,38 @@ SELECT
 FROM
     calc
 
+-- Show employee names with department names.
+
+SELECT 
+    employee_name, department_id
+FROM 
+    employees
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
