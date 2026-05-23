@@ -147,6 +147,12 @@ GROUP BY
 ORDER BY
     employee_count DESC
 
+-- Count tasks completed in March 2024.
+
+SELECT
+    COUNT(*) FILTER (WHERE task_status = 'Completed' AND EXTRACT(MONTH FROM completed_at) = 3) AS completed_tasks
+FROM
+    tasks
 
 
 
