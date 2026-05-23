@@ -75,4 +75,73 @@ FROM tasks t
 JOIN duration d
 ON t.task_id = d.task_id
 ORDER BY avg_completion_duration DESC
-	
+
+--   Count completed vs in-progress tasks in ONE query.
+
+SELECT
+    DISTINCT task_status,
+	COUNT(task_status) task_count
+FROM 
+    tasks
+GROUP BY
+    task_status
+
+--   Count HIGH priority completed tasks.
+
+SELECT
+    priority,
+	task_status,
+	COUNT(task_status) task_count
+FROM tasks
+GROUP BY
+    priority, task_status
+HAVING	
+    priority = 'High'
+AND
+    task_status = 'Completed'
+
+-- Count completed tasks per employee.
+
+SELECT
+    DISTINCT employee_id,
+	task_status,
+	COUNT(*) task_count
+FROM 
+    tasks
+GROUP BY
+    employee_id, task_status
+HAVING
+    task_status = 'Completed'
+
+-- Calculate completion rate: completed_tasks / total_tasks
+
+SELECT 
+    COUNT(*) FILTER (WHERE task_status = 'Completed') completed_tasks,
+	COUNT(*) total_tasks,
+	CONCAT(
+		ROUND(COUNT(*) FILTER (WHERE task_status = 'Completed')::NUMERIC / COUNT(*), 2) * 100, '%') AS completion_rate
+FROM
+    tasks
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
