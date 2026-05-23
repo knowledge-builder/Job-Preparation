@@ -168,7 +168,31 @@ SELECT
 FROM
     tasks
 
+-- Create a KPI summary query containing:
+	-- total tasks
+	-- completed tasks
+	-- in-progress tasks
+	-- completion percentage all in ONE query.
 
+WITH calc AS (
+	SELECT
+	    COUNT(task_id) total_tasks,
+		COUNT(*) FILTER (WHERE task_status = 'Completed') completed_tasks,
+		COUNT(*) FILTER (WHERE task_status = 'In Progress') in_progress_task
+	FROM
+	    tasks
+)
+
+SELECT 
+    total_tasks,
+	completed_tasks,
+	in_progress_task,
+	CONCAT
+	(
+		ROUND((completed_tasks::NUMERIC / total_tasks), 2) * 100, '%'
+	) completion_percentage
+FROM
+    calc
 
 
 
