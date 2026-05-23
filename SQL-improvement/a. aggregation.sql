@@ -1,3 +1,4 @@
+-- TASK: Calculate completion rate: completed_tasks / total_tasks
 -- Original Query
 WITH calc AS (
     SELECT
