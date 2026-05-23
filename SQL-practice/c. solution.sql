@@ -161,7 +161,12 @@ SELECT
 FROM
     tasks
 
+-- Count HIGH priority tasks still in progress.
 
+SELECT
+    COUNT(*) FILTER (WHERE task_status = 'In Progress' AND priority = 'High') high_priority_count
+FROM
+    tasks
 
 
 
