@@ -154,7 +154,12 @@ SELECT
 FROM
     tasks
 
+-- Count tasks not yet completed.
 
+SELECT
+    COUNT(*) FILTER (WHERE task_status != 'Completed') incomplete_tasks
+FROM
+    tasks
 
 
 
