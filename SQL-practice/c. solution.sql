@@ -201,7 +201,15 @@ SELECT
 FROM 
     employees
 
+-- Show task names with employee names.
 
+SELECT 
+    t.task_name, e.employee_name
+FROM
+    tasks t
+JOIN 
+	employees e
+ON t.employee_id = e.employee_id
 
 
 
