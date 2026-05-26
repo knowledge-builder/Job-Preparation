@@ -290,8 +290,16 @@ FROM tasks t1
 JOIN task_logs t2
 	ON t1.task_id = t2.task_id
 
+-- Find employees who worked on HIGH priority tasks.
 
-
+SELECT
+	e.employee_name employee,
+	t.priority
+FROM employees e
+JOIN tasks t
+	ON e.employee_id = t.employee_id
+WHERE priority = 'High'
+	
 
 
 
