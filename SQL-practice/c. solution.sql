@@ -281,6 +281,14 @@ FROM employees
 GROUP BY department_id
 HAVING COUNT(employee_name) > 2
 
+-- Show all task logs with task names.
+
+SELECT
+	t1.task_name,
+	t2. *
+FROM tasks t1
+JOIN task_logs t2
+	ON t1.task_id = t2.task_id
 
 
 
