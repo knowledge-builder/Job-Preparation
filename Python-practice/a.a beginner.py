@@ -104,3 +104,11 @@ completed = tasks[tasks['task_status']=='Completed'].shape[0]
 completed_task_pct = (completed / (tasks['task_status'].shape[0])) * 100
 
 print(f"{completed_task_pct:.2f}'%'")
+
+#  Find average number of tasks per employee.
+
+res = tasks.groupby('employee_id')['task_id'].mean().sort_values(ascending=False)
+
+avg_task_emp = res.rename('avg_task')
+
+avg_task_emp
