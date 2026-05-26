@@ -260,7 +260,17 @@ JOIN tasks t
 GROUP BY employee  
 ORDER BY employee
 
+-- Show employees with NO completed tasks.
 
+SELECT
+	e.employee_name employee,
+	t.task_status,
+	t.task_name
+FROM employees e
+JOIN tasks t
+	ON e.employee_id = t.employee_id
+WHERE
+	t.task_status = 'In Progress'
 
 
 
