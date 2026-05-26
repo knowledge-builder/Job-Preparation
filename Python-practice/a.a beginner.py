@@ -23,3 +23,9 @@ employees['salary'].max()
 # .shape[0] is a common way to count how many rows are in the dataset.
 active_emp = employees[employees['status'] == 'Active'].shape[0]
 active_emp
+
+# Find unique departments.
+employees['department_id'].unique()
+
+# Count total tasks.
+tasks['task_id'].count()
