@@ -41,4 +41,10 @@ emp_dep_count = res.rename("employee_count")
 
 emp_dep_count
 
+# Calculate percentage of completed tasks.
 
+completed = tasks[tasks['task_status']=='Completed'].shape[0]
+
+completed_task_pct = (completed / (tasks['task_status'].shape[0])) * 100
+
+print(f"{completed_task_pct:.2f}'%'")
