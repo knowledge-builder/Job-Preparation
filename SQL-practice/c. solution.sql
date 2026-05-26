@@ -249,7 +249,16 @@ FROM
 GROUP BY 
     department_id
 	
+-- Show all employees and their task counts. Include employees with zero tasks.
 
+SELECT
+	e.employee_name employee,
+	COUNT(t.task_id) task_count
+FROM employees e
+JOIN tasks t
+	ON e.employee_id = t.employee_id
+GROUP BY employee  
+ORDER BY employee
 
 
 
