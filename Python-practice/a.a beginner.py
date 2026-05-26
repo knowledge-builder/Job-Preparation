@@ -29,3 +29,16 @@ employees['department_id'].unique()
 
 # Count total tasks.
 tasks['task_id'].count()
+
+# Count employees per department.
+
+# department_id is the grouping key
+# employee_name is the aggregated column
+
+res = employees.groupby('department_id')['employee_name'].count().sort_values(ascending=False)
+
+emp_dep_count = res.rename("employee_count")
+
+emp_dep_count
+
+
