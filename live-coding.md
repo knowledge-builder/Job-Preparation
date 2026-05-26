@@ -61,8 +61,6 @@
     • suggest optimizations
     • challenge your business logic
 ```
-<br>
-
 ---
 
 ```
