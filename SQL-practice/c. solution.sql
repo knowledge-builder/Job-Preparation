@@ -272,6 +272,14 @@ JOIN tasks t
 WHERE
 	t.task_status = 'In Progress'
 
+-- Find departments with more than 2 employees.
+
+SELECT
+	department_id,
+	COUNT(employee_name) emp_count
+FROM employees
+GROUP BY department_id
+HAVING COUNT(employee_name) > 2
 
 
 
