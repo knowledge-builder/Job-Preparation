@@ -187,3 +187,39 @@
     • Failure Rate
       • = (Failed Transactions / Total Transactions) × 100
 ```
+---
+```sql
+-- Question #1
+-- The finance team wants to identify the company’s highest-value customers.
+-- For each country, rank customers based on their total successful transaction amount in March 2024.
+
+WITH customer_totals AS (
+	SELECT
+		c.country,
+		c.customer_id,
+		c.full_name,
+		SUM(t.amount) total_successful_amount
+	FROM customers c
+	JOIN transactions t
+		ON c.customer_id = t.customer_id
+	WHERE t.status = 'success'
+		AND t.transaction_date >= DATE '2024-03-01'
+		AND t.transaction_date < DATE '2024-04-01'
+	GROUP BY
+		c.country,
+		c.customer_id,
+		c.full_name
+)
+
+SELECT
+	country,
+	customer_id,
+	full_name,
+	total_successful_amount,
+	RANK() OVER (
+		PARTITION BY country
+		ORDER BY total_successful_amount DESC
+	) customer_rank
+FROM customer_totals
+ORDER BY country, customer_rank;
+```
