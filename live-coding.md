@@ -223,3 +223,24 @@ SELECT
 FROM customer_totals
 ORDER BY country, customer_rank;
 ```
+```sql
+-- Question #2
+
+SELECT
+	c.customer_id,
+	t.transaction_date,
+	t.amount,
+	SUM(t.amount) OVER (
+		PARTITION BY c.customer_id
+		ORDER BY t.transaction_date
+		ROWS BETWEEN 6 PRECEDING AND CURRENT ROW
+	) rolling_7_day_total
+FROM customers c
+JOIN transactions t
+	ON c.customer_id = t.customer_id
+WHERE 
+	t.status = 'success'
+ORDER BY
+	customer_id,
+	transaction_date
+```
